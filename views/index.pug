@@ -1,0 +1,71 @@
+//- doctype html
+//- html
+//-     head
+//-         title Institution Table
+//-         link(rel='stylesheet' href='/stylesheets/style.css')
+//-     body
+//-         div#table-container
+//-         table#table
+//-             thead
+//-                 tr
+//-                     th Pos.
+//-                     th Institution
+//-                     th Shortlisted
+//-                     th Awarded
+//-             tbody
+//-                 each val, index in instNames
+//-                     tr
+//-                         td= index+1
+//-                         td= val
+//-                         td= shortlistedCount[index]
+//-                         td= awardedCount[index]
+
+doctype html
+html
+    head
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        style.
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+                width: 100%;
+            }
+            th, td {
+                text-align: left;
+                padding: 14px;
+            }
+            th {
+                color: white;
+                background-color: #750e6a;
+            }
+            tr {
+                border-bottom: 0.3px solid lightgrey;
+            }
+            tr:hover, tr:nth-child(even):hover{
+                background-color: #EDEDED;
+            }
+            tr:nth-child(even){background-color: #F7F7F7}
+    body(style='font: 14px "Muli", sans-serif; font-size: 15px; color: #333333')
+        div(style='overflow-x:auto;')
+            table#table
+                thead
+                    tr
+                        th Pos.
+                        th Institution
+                        th Shortlisted
+                        th Awarded
+                tbody
+                    each val, index in instNames
+                        -var isWeglobal = (val === 'WEglobal (IT)')
+                        if isWeglobal
+                            tr(style='color: #750e6a; font-weight: 800;')
+                                td= index+1
+                                    td= val
+                                    td= shortlistedCount[index]
+                                    td= awardedCount[index]
+                        else
+                            tr
+                                td= index+1
+                                td= val
+                                td= shortlistedCount[index]
+                                td= awardedCount[index]
